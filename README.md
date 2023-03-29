@@ -11,7 +11,7 @@ The goal of proteomicsanalysis is to provide statistical analysis and visualisat
 You can install the development version of proteomicsanalysis like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+devtools::install_github("evgeniyampukhovaya/proteomicsanalysis")
 ```
 
 ## Example
