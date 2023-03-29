@@ -1,0 +1,68 @@
+---
+title: "proteomicsanalysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{proteomicsanalysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Aim of the package
+
+This package is created to analyse interactomics proteomics data. It simplifies the handling of multiple datasets. In the future it will allow to include other types of data such as PTM proteomics.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Usage example
+
+Here you will see the Arabidopsis dataset for one of the polar proteins. We will calculate the amount of significant interactors, compare two statistical thresholds and draw the volcano plots with the labels of some of the proteins of our interest.
+
+### Initialize the package
+
+
+```{r initialise}
+library(proteomicsanalysis)
+```
+
+
+### Load the example data and calculate FDR 
+
+```{r load data}
+example_data <- logFC_values_arabidopsis
+file_with_gene_ids_FDR <- perseus_FDR_ttest(example_data)
+nrow(file_with_gene_ids_FDR)
+
+```
+
+### Check the amount of significant interactors with logFC threshold 1 and FDR threshold 0.05
+
+
+```{r logFC 1 FDR 0.05}
+file_with_gene_ids_FDR_significant <- perseus_ttest_significant(file_with_gene_ids_FDR, logfc_threshold = 1, FDR_threshold = 0.05)
+nrow(file_with_gene_ids_FDR_significant)
+
+
+
+```
+
+### Check the amount of significant interactors with logFC threshold 0 and FDR threshold 0.10
+
+
+```{r logFC 0 FDR 0.10}
+file_with_gene_ids_FDR_significant <- perseus_ttest_significant(file_with_gene_ids_FDR, logfc_threshold = 0, FDR_threshold = 0.10)
+nrow(file_with_gene_ids_FDR_significant)
+
+```
+
+You can notice that the threshold choice is really arbitrary for the proteomics dataset. You can also check the distribution on the volcano plot and select the threshold based on some of your proteins of interest 
+
+
+```{r volcano_plot, fig.height = 5, fig.width = 10}
+arabidopsis_volcano <- draw_volcano_plot(file_with_gene_ids_FDR, known_protein_names = proteins_name_arabidopsis_example, logfc_limit = 1, fdr_limit = -log10(0.05))
+arabidopsis_volcano
+
+
+```
