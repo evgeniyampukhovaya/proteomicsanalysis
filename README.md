@@ -4,7 +4,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of proteomicsanalysis is to provide statistical analysis and visualisation of interactomics datasets; it will eventually accept MaxQuant LFQ values and generate a list of significantly enriched proteins in the data; for now, it operates with the putput of Perseus
+The goal of proteomicsanalysis is to provide statistical analysis and visualisation of interactomics datasets; it will eventually accept MaxQuant LFQ values and generate a list of significantly enriched proteins in the data + graphs to analyse the results; for now, it operates with the output of Perseus
 
 ## Installation
 
